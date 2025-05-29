@@ -3,12 +3,22 @@ pipeline {
 
     stages {
         stage('Install dependencies') {
+            agent {
+                docker {
+                    image 'node:18'
+                }
+            }
             steps {
                 sh 'npm install'
             }
         }
 
         stage('Run tests') {
+            agent {
+                docker {
+                    image 'node:18'
+                }
+            }
             steps {
                 sh 'npm test || echo "No tests found, continuing..."'
             }
@@ -27,3 +37,4 @@ pipeline {
         }
     }
 }
+
